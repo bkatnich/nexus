@@ -12,12 +12,12 @@ jobs:
       - checkout
 
       - run:
-        name: Build Docker Image
-        command: docker build -t bk-nexus .
+          name: Build Docker Image
+          command: docker build -t bk-nexus .
 
       - run: 
-        name: Deploy To Heroku
-        command: |
-          - docker login --email=katnich@shaw.ca --username=katnich@shaw.ca --password=c42504b5-be69-467e-a86b-2959b66bb45e registry.heroku.com
-          - docker build --rm=false -t registry.heroku.com/bk-nexus/web .
-          - docker push registry.heroku.com/bk-nexus/web:latest
+          name: Deploy To Heroku
+          command: |
+            - docker login --email=katnich@shaw.ca --username=katnich@shaw.ca --password=c42504b5-be69-467e-a86b-2959b66bb45e registry.heroku.com
+            - docker build --rm=false -t registry.heroku.com/bk-nexus/web .
+            - docker push registry.heroku.com/bk-nexus/web:latest
