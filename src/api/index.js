@@ -9,7 +9,7 @@ const express = require('express');
 
 // Path at this point should be /api
 let router = express.Router();
-// router.use('/api', require('./v1'));
+router.use('/api', require('./v1'));
 
 router.get('/api', (req, res) => {
   res.send('Hey there ... you are in my api directory');
