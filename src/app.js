@@ -27,7 +27,7 @@ app.use(cors());
 app.use(require('./api'));
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the latest version of nexus: ' + apv.composePatternSync('M.m.p-Ss n-d'));
+  res.send('Welcome to the latest version of nexus: ' + apv.composePatternSync('M.m.p-n d'));
 });
 
 // App: Start Listening
