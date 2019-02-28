@@ -19,6 +19,7 @@ WORKDIR /home/node/app
 
 # Install deps for production only
 COPY ./package* ./
+COPY ./appversion.json ./
 RUN npm install && npm cache clean --force
 # Copy builded source from the upper builder stage
 COPY --from=builder /home/node/app/dist ./dist/
