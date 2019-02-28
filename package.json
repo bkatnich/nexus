@@ -19,6 +19,7 @@
     "nexus"
   ],
   "author": "Britton Katnich <bkatnich@gmail.com>",
+  "repository": "https://github.com/bkatnich/nexus.git",
   "license": "MIT",
   "dependencies": {
     "cors": "2.8.5",
