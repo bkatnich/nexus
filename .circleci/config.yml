@@ -15,9 +15,16 @@ jobs:
           name: Build Docker Image
           command: docker build -t bk-nexus .
 
+      #- run:
+      #    name: Deploy to Heroku
+      #    command: |
+      #       docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+      #       docker tag raniazy/dockerized-bot:$CIRCLE_SHA1 registry.heroku.com/$HEROKU_APP_NAME/web
+      #       docker push registry.heroku.com/$HEROKU_APP_NAME/web
+
       - run: 
           name: Deploy To Heroku
           command: |
-            - docker login --email=katnich@shaw.ca --username=katnich@shaw.ca --password=c42504b5-be69-467e-a86b-2959b66bb45e registry.heroku.com
-            - docker build --rm=false -t registry.heroku.com/bk-nexus/web .
-            - docker push registry.heroku.com/bk-nexus/web:latest
+            docker login --username=katnich@shaw.ca --password=c42504b5-be69-467e-a86b-2959b66bb45e registry.heroku.com
+            docker build --rm=false -t registry.heroku.com/bk-nexus/web .
+            docker push registry.heroku.com/bk-nexus/web:latest
