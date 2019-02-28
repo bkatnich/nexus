@@ -22,8 +22,4 @@ jobs:
             docker build --rm=false -t registry.heroku.com/bk-nexus/web .
             docker push registry.heroku.com/bk-nexus/web:latest
             docker release registry.heroku.com/bk-nexus/web:latest
-
-workflows:
-  version: 2
-  jobs:
-      - build
+            
