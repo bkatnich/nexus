@@ -26,7 +26,7 @@ app.use(cors());
 app.use(require('./api'));
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the latest version of nexus!');
+  res.send('Welcome to the latest version of nexus: ' + process.env.npm_package_version);
 });
 
 // App: Start Listening
