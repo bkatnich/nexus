@@ -5,18 +5,19 @@
 version: 2
 jobs:
   build:
-    machine:
-      services:
-        - docker
+    machine: true
+    working_directory: ~/repo
 
-    dependencies:
-      cache_directories:
-        - ~/docker
+    steps:
+      - checkout
 
-    deployment:
-      staging:
-        branch: master
-        commands: |
-          - docker login --email=katnich@shaw.ca --username=$katnich@shaw.ca --password=$c42504b5-be69-467e-a86b-2959b66bb45e registry.heroku.com
+      - run:
+        name: Build Docker Image
+        command: docker build -t bk-nexus .
+
+      - run: 
+        name: Deploy To Heroku
+        command: |
+          - docker login --email=katnich@shaw.ca --username=katnich@shaw.ca --password=c42504b5-be69-467e-a86b-2959b66bb45e registry.heroku.com
           - docker build --rm=false -t registry.heroku.com/bk-nexus/web .
           - docker push registry.heroku.com/bk-nexus/web:latest
