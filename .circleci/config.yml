@@ -12,8 +12,8 @@ jobs:
       - checkout
 
       - run:
-        name: Build Docker Image
-        command: docker build -t bk-nexus .
+          name: Build Docker Image
+          command: docker build -t bk-nexus .
 
       #- run: 
       #  name: Deploy To Heroku
