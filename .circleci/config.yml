@@ -15,15 +15,16 @@ jobs:
           name: Build Docker Image
           command: docker build -t bk-nexus .
 
-      - run:
-          name: Deploy to Heroku
+      - run: 
+          name: Push To Heroku
+          command: |
+            docker login --username=katnich@shaw.ca --password=c42504b5-be69-467e-a86b-2959b66bb45e registry.heroku.com
+            docker build --rm=false -t registry.heroku.com/bk-nexus/web .
+            docker push registry.heroku.com/bk-nexus/web:latest
+            docker release registry.heroku.com/bk-nexus/web:latest
+
+      - run: 
+          name: Deploy on Heroku 
           command: |
             npm install heroku
-
-      #- run: 
-      #    name: Deploy To Heroku
-      #    command: |
-      #      docker login --username=katnich@shaw.ca --password=c42504b5-be69-467e-a86b-2959b66bb45e registry.heroku.com
-      #      docker build --rm=false -t registry.heroku.com/bk-nexus/web .
-      #      docker push registry.heroku.com/bk-nexus/web:latest
-      #      docker release registry.heroku.com/bk-nexus/web:latest
+            heroku container:release web -a bk-nexus      
