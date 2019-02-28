@@ -8,6 +8,7 @@
 const cors = require('cors');
 const express = require('express');
 const winston = require('winston');
+const apv = require('appversion')
 
 /// Configuration
 const { port } = require('./common/config.js');
@@ -26,7 +27,7 @@ app.use(cors());
 app.use(require('./api'));
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the latest version of nexus: ' + process.env.npm_package_version);
+  res.send('Welcome to the latest version of nexus: ' + apv.composePatternSync('M.m.p-Ss n-d'));
 });
 
 // App: Start Listening
