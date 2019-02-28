@@ -8,7 +8,7 @@
 const cors = require('cors');
 const express = require('express');
 const winston = require('winston');
-const apv = require('appversion')
+const apv = require('appversion');
 
 /// Configuration
 const { port } = require('./common/config.js');
