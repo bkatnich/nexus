@@ -12,5 +12,6 @@ dotenv.config({ path: '.env' });
 /// In production the PORT variable is added on the command line.
 /// Docker command line example: docker run -i -t -e PORT=3000 -p 3000:3000 076d420e52b1
 module.exports = {
-  port: process.env.PORT
+  port: process.env.PORT,
+  secret: process.env.NODE_ENV === 'production' ? process.env.SECRET : 'secret'
 };

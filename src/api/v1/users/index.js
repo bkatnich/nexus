@@ -7,12 +7,14 @@
 
 const express = require('express');
 
-// Path at this point should be api/v1
-let router = express.Router();
-router.use('/v1', require('./users'));
+// Model must be required before the controller.
+require('./User.js');
 
-router.get('/v1', (req, res) => {
-  res.send('Hey there ... you are in my api/v1 directory');
-});
+// Controller
+const controller = require('./users');
+
+// Path at this point should be api/v1/users
+let router = express.Router();
+router.use('/users', controller);
 
 module.exports = router;

@@ -7,8 +7,23 @@
 
 const express = require('express');
 
-// Path at this point should be /api
 let router = express.Router();
+
+router.use(function (err, req, res, next) {
+  if (err.name === 'ValidationError') {
+    return res.status(422).json({
+      errors: Object.keys(err.errors).reduce(function (errors, key) {
+        errors[key] = err.errors[key].message;
+
+        return errors;
+      }, {})
+    });
+  }
+
+  return next(err);
+});
+
+// Path at this point should be /api
 router.use('/api', require('./v1'));
 
 router.get('/api', (req, res) => {
